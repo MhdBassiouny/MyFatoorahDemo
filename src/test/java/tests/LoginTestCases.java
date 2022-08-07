@@ -1,6 +1,6 @@
 package tests;
 
-import base.BaseTestChrome;
+import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +9,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTestCases extends BaseTestChrome {
+public class LoginTestCases extends BaseTest {
+
+    public LoginTestCases(String browserType) {
+        super("Chrome", "1");
+    }
 
     @BeforeMethod
     public void beforeMethods() throws InterruptedException {

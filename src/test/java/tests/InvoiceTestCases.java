@@ -1,6 +1,6 @@
 package tests;
 
-import base.BaseTestFirefox;
+import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.DataProvider;
@@ -9,7 +9,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 
-public class InvoiceTestCases extends BaseTestFirefox {
+public class InvoiceTestCases extends BaseTest {
+
+    public InvoiceTestCases(String browserType) {
+        super("FireFox", "2");
+    }
 
     @DataProvider
     public Object[][] invoiceValues() {

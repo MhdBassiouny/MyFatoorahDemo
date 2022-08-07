@@ -1,12 +1,16 @@
 package tests;
 
-import base.BaseTestChrome;
+import base.BaseTest;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 
-public class RefundTestCases extends BaseTestChrome {
+public class RefundTestCases extends BaseTest {
+
+    public RefundTestCases(String browserType) {
+        super("Chrome", "1");
+    }
 
     @Test //Add Account Statement Validation
     public void deductRefund() {
