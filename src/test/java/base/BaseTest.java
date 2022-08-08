@@ -1,12 +1,10 @@
 package base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -31,11 +29,12 @@ public class BaseTest {
     protected static DecimalFormat dfThreeDigits = new DecimalFormat("#.###");
     protected static DecimalFormat dfTwoDigits = new DecimalFormat("#.##");
 
-    public BaseTest(String browserType, String loadBalance){
+    public BaseTest(String browserType, String loadBalance) {
         this.browserType = browserType;
         this.loadBalancer = loadBalance;
     }
-    public BaseTest(){
+
+    public BaseTest() {
     }
 
     @BeforeClass
@@ -62,10 +61,10 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.navigate().to(inputs.getLogin());
-        if (loadBalancer.equals("1")){
+        if (loadBalancer.equals("1")) {
             driver.manage().addCookie(new Cookie("ApplicationGatewayAffinity", "3ef0c0508ad415fb05a4ff3f87fb97da"));
             driver.manage().addCookie(new Cookie("ApplicationGatewayAffinityCORS", "3ef0c0508ad415fb05a4ff3f87fb97da"));
-        } else if (loadBalancer.equals("2")){
+        } else if (loadBalancer.equals("2")) {
             driver.manage().addCookie(new Cookie("ApplicationGatewayAffinity", "61939aeb6b7c5f38617144d210b01e24"));
             driver.manage().addCookie(new Cookie("ApplicationGatewayAffinityCORS", "61939aeb6b7c5f38617144d210b01e24"));
         }
