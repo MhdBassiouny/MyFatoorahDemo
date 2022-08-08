@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class RefundTestCases extends BaseTest {
 
     public RefundTestCases() {
-        super("Chrome", "2");
+        super("FireFox", "2");
     }
 
     @Test //Add Account Statement Validation

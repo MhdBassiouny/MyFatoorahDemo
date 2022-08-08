@@ -29,9 +29,9 @@ public class Home extends Page {
     public WebElement invoiceReport;
     @FindBy(linkText = "Invoices List")
     public WebElement invoicesList;
-    @FindBy(linkText = "Create Quick pages.Invoice")
+    @FindBy(linkText = "Create Quick Invoice")
     public WebElement quickInvoice;
-    @FindBy(linkText = "Create pages.Invoice")
+    @FindBy(linkText = "Create Invoice")
     public WebElement createInvoice;
 
     @FindBy(linkText = "Batch Invoices")
@@ -80,9 +80,9 @@ public class Home extends Page {
     public WebElement usersList;
     @FindBy(linkText = "Create User")
     public WebElement createUser;
-    @FindBy(linkText = "Manage Multi pages.Login")
+    @FindBy(linkText = "Manage Multi Login")
     public WebElement manageMultiLogin;
-    @FindBy(linkText = "Approve Multi pages.Login")
+    @FindBy(linkText = "Approve Multi Login")
     public WebElement approveMultiLogin;
 
     @FindBy(linkText = "Deposits")
@@ -99,21 +99,19 @@ public class Home extends Page {
     @FindBy(xpath = "//*[contains(text(), 'Account Statement')]")
     public WebElement accountStatement;
 
-    @FindBy(xpath = "//span[contains(text(), 'pages.Refund') or contains(text(), 'قائمة المبالغ المعادة')]")
+    @FindBy(xpath = "//span[contains(text(), 'Refund') or contains(text(), 'قائمة المبالغ المعادة')]")
     public WebElement refunds;
-    @FindBy(xpath = "//a[contains(text(), 'MyFatoorah pages.Refund') or contains(text(), 'اعادة المبالغ للمشترين')]")
+    @FindBy(xpath = "//a[contains(text(), 'MyFatoorah Refund') or contains(text(), 'اعادة المبالغ للمشترين')]")
     public WebElement myFatoorahRefund;
-    @FindBy(xpath = "//a[text()= 'pages.Refund' or contains(text(), 'اعادة المبلغ')]")
+    @FindBy(xpath = "//a[text()= 'Refund' or contains(text(), 'اعادة المبلغ')]")
     public WebElement refund;
     @FindBy(xpath = "//a[text()= 'Refunds List' or contains(text(), 'قائمة المبلغ المعادة')]")
     public WebElement refundsList;
 
-    public By xpathRefundSection = By.xpath("//span[contains(text(), 'pages.Refund') or contains(text(), 'قائمة المبالغ المعادة')]");
-    public By xpathMyFatoorahRefund = By.xpath("//a[contains(text(), 'MyFatoorah pages.Refund') or contains(text(), 'اعادة المبالغ للمشترين')]");
-    public By xpathWireTransfer = By.xpath("//a[text()= 'pages.Refund' or contains(text(), 'اعادة المبلغ')]");
-
+    public By xpathRefundSection = By.xpath("//span[contains(text(), 'Refund') or contains(text(), 'قائمة المبالغ المعادة')]");
+    public By xpathMyFatoorahRefund = By.xpath("//a[contains(text(), 'MyFatoorah Refund') or contains(text(), 'اعادة المبالغ للمشترين')]");
+    public By xpathWireTransfer = By.xpath("//a[text()= 'Refund' or contains(text(), 'اعادة المبلغ')]");
     public By xpathInvoiceSection = By.xpath("//span[contains(text(), 'Invoices Report') or contains(text(), 'تقارير الفواتير')]");
-
     public By xpathInvoiceList = By.xpath("//a[text() = 'Invoices List' or contains(text(), 'قائمة الفواتير')]");
 
 
@@ -141,11 +139,11 @@ public class Home extends Page {
     @FindBy(linkText = "Contact")
     public WebElement contact;
 
-    @FindBy(linkText = "Create pages.Invoice")
+    @FindBy(linkText = "Create Invoice")
     public WebElement createInvoiceQuick;
     @FindBy(linkText = "View All Invoices")
     public WebElement viewInvoices;
-    @FindBy(linkText = "Create Quick pages.Invoice")
+    @FindBy(linkText = "Create Quick Invoice")
     public WebElement createQuickInvoiceQuick;
     @FindBy(linkText = "View All Quick Invoices")
     public WebElement viewQuickInvoices;
@@ -153,7 +151,7 @@ public class Home extends Page {
     public WebElement createPaymentLinkQuick;
     @FindBy(linkText = "View All Payment Links")
     public WebElement viewPaymentLinks;
-    @FindBy(linkText = "Create Batch pages.Invoice")
+    @FindBy(linkText = "Create Batch Invoice")
     public WebElement createBatchInvoiceQuick;
     @FindBy(linkText = "View All Batch Invoices")
     public WebElement viewBatchInvoices;
@@ -189,7 +187,6 @@ public class Home extends Page {
         driver.get(inputs.getRefundList());
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@id = 'grid-refund']/tbody/tr[1]/td[1]")));
     }
-
 
     public void openAccountStatementPage(){
         driver.get(inputs.getAccountStatementLink());

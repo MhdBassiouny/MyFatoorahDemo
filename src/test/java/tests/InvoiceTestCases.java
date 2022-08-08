@@ -120,7 +120,7 @@ public class InvoiceTestCases extends BaseTest {
 
         ArrayList<String> newTab = new ArrayList(driver.getWindowHandles());
         driver.switchTo().window(newTab.get(1));
-        invoice.payWithKNET();
+        invoice.payEmbedded();
         String result = invoice.getInvoiceStatus();
         assertion.assertTrue((result.contains("PAID") || result.contains("مدفوع")), "Link not Paid");
         driver.close();
