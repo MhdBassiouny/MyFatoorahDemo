@@ -6,25 +6,26 @@ public class InputData {
     private String home = "https://demo.myfatoorah.com/En/KWT/";
     private String baseLink = "https://demo.MyFatoorah.com/";
 
-    // pages.Register Data
+    // Register Data
     private String BusinessName = "Teat123";
-    private String maximumAmount = "20";
-    private  String openAmount = "10";
-    private    String registerEmail = "teat@test.com";
+    private String registerEmail = "teat@test.com";
 
+    //Invoice Data
+    private String maximumAmount = "20";
+    private String openAmount = "10";
     private String invoiceValue = "11.500";
-    private  float KDtoSR = 12.300f;
-    private  String discountPercentage = "10";
-    private  String discountAmount = ".5";
-    private  String partialRefundAmount = "3";
+    private float KDtoSR = 12.300f;
+    private float KDtoUSD = 3.300f;
+    private String discountPercentage = "10";
+    private String discountAmount = ".5";
+    private String partialRefundAmount = "3";
     private String wireTransfereAmount = "15";
 
-    // pages.Login Data
+    // Login Data
     private String correctEmail = "test@testing.com";
     private  String correctPassword = "A@qw1234";
     private  String incorrectEmail = "mbassiouny94@gmail.com";
     private  String incorrectPassword = "A@qw12345";
-
 
     //Links Demo
     private String quickInvoiceLink = home + "QuickInvoices/Create";
@@ -32,7 +33,8 @@ public class InputData {
     private String InvoiceListLink = home + "Invoices";
     private String refundLink = home + "Refunds/Transactions";
     private String wireTransferLink = home + "Refunds/Create";
-
+    private String refundList = home + "Refunds";
+    private String accountStatementLink = home + "AccountStatements";
 
 
     public int getSleepTime() {
@@ -239,5 +241,32 @@ public class InputData {
 
     public void setWireTransferLink(String wireTransferLink) {
         this.wireTransferLink = wireTransferLink;
+    }
+
+
+    public float getKDtoUSD() {
+        return KDtoUSD;
+    }
+
+    public void setKDtoUSD(float KDtoUSD) {
+        this.KDtoUSD = KDtoUSD;
+    }
+
+
+    public String getAccountStatementLink() {
+        return accountStatementLink;
+    }
+
+    public void setAccountStatementLink(String accountStatementLink) {
+        this.accountStatementLink = accountStatementLink;
+    }
+
+
+    public String getRefundList() {
+        return refundList;
+    }
+
+    public void setRefundList(String refundList) {
+        this.refundList = refundList;
     }
 }

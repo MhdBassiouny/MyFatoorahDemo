@@ -178,11 +178,27 @@ public class Home extends Page {
     public void openMyFatoorahRefundPage(){
         driver.get(inputs.getRefundLink());
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("main-container")));
-
     }
 
     public void openWireTransferPage(){
         driver.get(inputs.getWireTransferLink());
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("AccountHolderName")));
     }
+
+    public void openRefundListPage(){
+        driver.get(inputs.getRefundList());
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@id = 'grid-refund']/tbody/tr[1]/td[1]")));
+    }
+
+
+    public void openAccountStatementPage(){
+        driver.get(inputs.getAccountStatementLink());
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@id = 'grid-view']/tbody/tr[1]")));
+    }
+
+    public String invoiceTypeAccountStatement(String reference){
+        openAccountStatementPage();
+        return driver.findElement(By.xpath(String.format("//td[text() = '%s']/following-sibling::td[1]", reference))).getText();
+    }
+
 }

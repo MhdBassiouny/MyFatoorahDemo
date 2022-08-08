@@ -1,6 +1,6 @@
 package tests;
 
-import base.BaseTestFirefox;
+import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.DataProvider;
@@ -9,7 +9,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 
-public class InvoiceTestCases extends BaseTestFirefox {
+public class InvoiceTestCases extends BaseTest {
+
+    public InvoiceTestCases() {
+        super("Chrome", "1");
+    }
 
     @DataProvider
     public Object[][] invoiceValues() {
@@ -50,6 +54,9 @@ public class InvoiceTestCases extends BaseTestFirefox {
         driver.navigate().refresh();
         String status = driver.findElement(invoice.xpathInvoiceStatus).getText();
         assertion.assertTrue((status.contains("Paid") || status.contains("مدفوعة")), "Status not Changed in MyFatoorah");
+
+        String invoiceType = home.invoiceTypeAccountStatement(invoiceReference);
+        assertion.assertTrue(invoiceType.contains("Invoice Paid") || invoiceType.contains("دفع فاتورة"));
 
         assertion.assertAll();
     }

@@ -13,7 +13,7 @@ public class Register extends Page {
     @FindBy(linkText = "Kuwait")
     public WebElement KuwaitAccount;
 
-    @FindBy(linkText = "pages.Home Business")
+    @FindBy(linkText = "Home Business")
     public WebElement homeBusiness;
 
     @FindBy(xpath = "/html/body/app/form/section/div/div/div[3]/div/div[1]/div[1]/div/input")

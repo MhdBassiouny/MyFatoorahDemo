@@ -1,10 +1,12 @@
 package pages;
 
 import base.Page;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Login extends Page {
 
@@ -44,6 +46,7 @@ public class Login extends Page {
         userName.sendKeys(email);
         password.sendKeys(pass);
         password.sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("header-title")));
     }
 
 

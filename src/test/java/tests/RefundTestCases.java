@@ -1,12 +1,18 @@
 package tests;
 
-import base.BaseTestChrome;
+
+import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 
-public class RefundTestCases extends BaseTestChrome {
+public class RefundTestCases extends BaseTest {
+
+    public RefundTestCases() {
+        super("Chrome", "2");
+    }
 
     @Test //Add Account Statement Validation
     public void deductRefund() {
@@ -127,15 +133,15 @@ public class RefundTestCases extends BaseTestChrome {
     }
 
     @Test
-    public void sendRefund() {
+    public void sendRefund() throws InterruptedException {
         SoftAssert assertion = new SoftAssert();
 
         home.openQuickInvoicePage();
         invoice.createQuickInvoice(inputs.getInvoiceValue(), invoice.KDCurrency);
         String invoiceReference = invoice.getInvoiceReference();
         invoice.openInvoiceWithReference(invoiceReference);
-        invoice.invoiceLink.click();
 
+        invoice.invoiceLink.click();
         ArrayList<String> newTab = new ArrayList(driver.getWindowHandles());
         driver.switchTo().window(newTab.get(1));
         invoice.payWithKNET();
@@ -158,11 +164,16 @@ public class RefundTestCases extends BaseTestChrome {
         String refundInvoiceAmount = invoice.getInvoiceAmountWithReference(refundInvoiceReference);
         assertion.assertTrue(Float.parseFloat(refundInvoiceAmount) == -Float.parseFloat(amountRefunded));
 
+        home.openRefundListPage();
+        String refundListReference = driver.findElement(By.xpath(String.format("//td[text() = '%s']/preceding::td[@class]", invoiceReference))).getText().split("\n")[0];
+        String invoiceType = home.invoiceTypeAccountStatement(refundListReference);
+        assertion.assertTrue(invoiceType.contains("Refund") || invoiceType.contains("اعادة المبلغ للعميل"));
+
         assertion.assertAll();
     }
 
     @Test
-    public void deductWireTransfer() throws InterruptedException {
+    public void deductWireTransfer() {
         SoftAssert assertion = new SoftAssert();
 
         home.openWireTransferPage();

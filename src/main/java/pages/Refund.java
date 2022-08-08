@@ -13,10 +13,10 @@ public class Refund extends Page {
         super(driver);
     }
 
-    private By byValidationSummaryErrors = By.className("validation-summary-errors");
-    private By byAmountError = By.id("Amount-error");
-    private By byAlert = By.className("alert");
-    private By byAmount = By.id("Amount");
+    private final By byValidationSummaryErrors = By.className("validation-summary-errors");
+    private final By byAmountError = By.id("Amount-error");
+    private final By byAlert = By.className("alert");
+    private final By byAmount = By.id("Amount");
 
     @FindBy(xpath = "//label/input[@value='False']/following-sibling::span")
     public WebElement sendRefund;
@@ -77,8 +77,8 @@ public class Refund extends Page {
 
 
     public void openRefundWithInvoiceReference(String invoiceReference){
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[contains(.,'pages.Refund')]", invoiceReference))));
-        driver.findElement(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[contains(.,'pages.Refund')]", invoiceReference))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[contains(.,'Refund')]", invoiceReference))));
+        driver.findElement(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[contains(.,'Refund')]", invoiceReference))).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(byAmount));
     }
 
@@ -93,32 +93,27 @@ public class Refund extends Page {
 
     public String getRefundReference(){
         wait.until(ExpectedConditions.presenceOfElementLocated(byAlert));
-        String refundReference = refundMessage.getText().split(" ")[8];
-        return refundReference;
+        return refundMessage.getText().split(" ")[8];
     }
 
     public String getAmountRefunded(String refundReference){
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[6]", refundReference))));
-        String amountRefunded = driver.findElement(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[6]", refundReference))).getText();
-        return amountRefunded;
+        return driver.findElement(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[6]", refundReference))).getText();
     }
 
     public String getRefundInvoiceReference(String refundReference){
         String refundInvoiceReference = driver.findElement(By.xpath(String.format("//td[contains(.,'%s')]/following-sibling::td[3]", refundReference))).getText();
-        refundInvoiceReference = String.valueOf(Integer.parseInt(refundInvoiceReference) + 1);
-        return refundInvoiceReference;
+        return String.valueOf(Integer.parseInt(refundInvoiceReference) + 1);
     }
 
     public String getRefundValidationSummaryError(){
         wait.until(ExpectedConditions.presenceOfElementLocated(byValidationSummaryErrors));
-        String errorText = validationErrors.getText();
-        return errorText;
+        return validationErrors.getText();
     }
 
     public String getRefundAmountError(){
         wait.until(ExpectedConditions.presenceOfElementLocated(byAmountError));
-        String errorText = amountError.getText();
-        return errorText;
+        return amountError.getText();
     }
 
 }

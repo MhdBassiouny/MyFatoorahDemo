@@ -35,22 +35,23 @@ public class BaseTest {
         this.browserType = browserType;
         this.loadBalancer = loadBalance;
     }
+    public BaseTest(){
+    }
 
     @BeforeClass
     public static void initiateDriver() {
-        if (browserType.equals("Chrome")){
+        if (browserType.equals("FireFox")) {
+            String geckoPath = System.getProperty("user.dir") + "\\src\\main\\resources\\geckodriver.exe";
+            System.setProperty("webdriver.gecko.driver", geckoPath);
+            driver = new FirefoxDriver();
+            driver.manage().window().maximize();
+        } else {
             String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
             System.setProperty("webdriver.chrome.driver", chromePath);
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--incognito");
             options.addArguments("--start-maximized");
             driver = new ChromeDriver(options);
-
-        } else if (browserType.equals("FireFox")) {
-            String geckoPath = System.getProperty("user.dir") + "\\src\\main\\resources\\geckodriver.exe";
-            System.setProperty("webdriver.gecko.driver", geckoPath);
-            driver = new FirefoxDriver();
-            driver.manage().window().maximize();
         }
 
         login = new Login(driver);
@@ -58,7 +59,7 @@ public class BaseTest {
         register = new Register(driver);
         invoice = new Invoice(driver);
         refund = new Refund(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.navigate().to(inputs.getLogin());
         if (loadBalancer.equals("1")){
@@ -69,7 +70,6 @@ public class BaseTest {
             driver.manage().addCookie(new Cookie("ApplicationGatewayAffinityCORS", "61939aeb6b7c5f38617144d210b01e24"));
         }
         login.loginData(inputs.getCorrectEmail(), inputs.getCorrectPassword());
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("header-title")));
     }
 
     @AfterClass
